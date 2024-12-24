@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev
+
+logging:
+  level:
+    root: INFO
+    com.blog: DEBUG
+    software.amazon.awssdk: DEBUG
