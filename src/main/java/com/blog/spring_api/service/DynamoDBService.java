@@ -21,6 +21,19 @@ public class DynamoDBService {
         this.dynamoDbClient = dynamoDbClient;
     }
 
+    public String getItem(String part, String index) {
+        Map<String, AttributeValue> keyToGet = new HashMap<>();
+        keyToGet.put("part_001", AttributeValue.builder().s(part).build()); // 파티션 키
+        keyToGet.put("index_001", AttributeValue.builder().s(index).build());   // 정렬 키
+
+        GetItemRequest request = GetItemRequest.builder()
+                .tableName(tableName)
+                .key(keyToGet)
+                .build();
+
+        GetItemResponse response = dynamoDbClient.getItem(request);
+        return response.item().get("Value").s();
+    }
 
     public void putItem(String part, String index, String pk, String value) {
         Map<String, AttributeValue> item = new HashMap<>();
@@ -36,19 +49,5 @@ public class DynamoDBService {
 
         PutItemResponse response = dynamoDbClient.putItem(request);
         System.out.println("PutItem response: " + response);
-    }
-
-    public String getItem(String part, String index) {
-        Map<String, AttributeValue> keyToGet = new HashMap<>();
-        keyToGet.put("part_001", AttributeValue.builder().s(part).build()); // 파티션 키
-        keyToGet.put("index_001", AttributeValue.builder().s(index).build());   // 정렬 키
-
-        GetItemRequest request = GetItemRequest.builder()
-                .tableName(tableName)
-                .key(keyToGet)
-                .build();
-
-        GetItemResponse response = dynamoDbClient.getItem(request);
-        return response.item().get("Value").s();
     }
 }
