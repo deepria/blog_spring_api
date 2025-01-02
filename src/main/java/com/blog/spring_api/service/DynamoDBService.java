@@ -1,5 +1,7 @@
 package com.blog.spring_api.service;
 
+import com.blog.spring_api.entity.TestEntity;
+import com.blog.spring_api.repository.TestRepository;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
@@ -9,16 +11,19 @@ import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class DynamoDBService {
 
     private final DynamoDbClient dynamoDbClient;
+    private final TestRepository testRepository;
     private final String tableName = "deepria";
 
-    public DynamoDBService(DynamoDbClient dynamoDbClient) {
+    public DynamoDBService(DynamoDbClient dynamoDbClient, TestRepository testRepository) {
         this.dynamoDbClient = dynamoDbClient;
+        this.testRepository = testRepository;
     }
 
     public String getItem(String part, String index) {
@@ -49,5 +54,21 @@ public class DynamoDBService {
 
         PutItemResponse response = dynamoDbClient.putItem(request);
         System.out.println("PutItem response: " + response);
+    }
+
+    public List<TestEntity> getAllEntities() {
+        return testRepository.findAll();
+    }
+
+    public List<TestEntity> getEntitiesByPartitionKey(String id) {
+        return testRepository.findByPartitionKey(id);
+    }
+
+    public void saveEntity(TestEntity entity) {
+        testRepository.save(entity);
+    }
+
+    public void deleteEntity(String id) {
+        testRepository.delete(id);
     }
 }
