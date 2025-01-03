@@ -29,6 +29,7 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // 모든 경로에 대해 허용
                         .allowedOrigins("https://8niny4uiz4.execute-api.ap-northeast-2.amazonaws.com") // api 게이트웨이 도메인
+                        .allowedOrigins("https://main.d39hqh4ds9p1ue.amplifyapp.com") // Vue 개발 서버 도메인
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 허용할 HTTP 메서드
                         .allowedHeaders("*") // 모든 헤더 허용
                         .allowCredentials(true); // 인증 정보 허용
