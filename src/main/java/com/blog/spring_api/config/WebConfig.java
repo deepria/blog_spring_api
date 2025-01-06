@@ -31,6 +31,7 @@ public class WebConfig {
                         .allowedOrigins(
                                 "https://8niny4uiz4.execute-api.ap-northeast-2.amazonaws.com" // API Gateway 도메인
                                 ,"https://main.d39hqh4ds9p1ue.amplifyapp.com" // Amplify 도메인
+                                ,"http://localhost:5173/" // 로컬 vue 도메인
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 허용할 HTTP 메서드
                         .allowedHeaders("*") // 모든 헤더 허용
