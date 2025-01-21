@@ -40,6 +40,30 @@ public class FileController {
         }
     }
 
+    @GetMapping("/{imageName}")
+    public ResponseEntity<Resource> getImage(@PathVariable String imageName) {
+        try {
+            Path imagePath = rootLocation.resolve(imageName);
+            Resource resource = new UrlResource(imagePath.toUri());
+
+            if (!resource.exists() || !resource.isReadable()) {
+                return ResponseEntity.notFound().build();
+            }
+
+            String contentType = Files.probeContentType(imagePath);
+            if (contentType == null) {
+                contentType = "application/octet-stream";
+            }
+
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(contentType))
+                    .body(resource);
+
+        } catch (IOException e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     @GetMapping("/download")
     public ResponseEntity<Resource> handleFileDownload(
             @RequestParam("path") String path,
