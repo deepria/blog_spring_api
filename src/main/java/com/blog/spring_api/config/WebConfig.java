@@ -29,7 +29,7 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // 모든 경로에 대해 허용
                         .allowedOrigins(
-                                "https://8niny4uiz4.execute-api.ap-northeast-2.amazonaws.com" // API Gateway 도메인
+                                "https://lhmzq4cmgd.execute-api.ap-northeast-2.amazonaws.com/stage" // API Gateway 도메인
                                 ,"https://main.d39hqh4ds9p1ue.amplifyapp.com" // Amplify 도메인
                                 ,"http://localhost:5173/" // 로컬 vue 도메인
                         )
