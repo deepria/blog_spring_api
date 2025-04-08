@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Stopping running application..."
+
+PID=$(pgrep -f 'java -jar')
+
+if [ -n "$PID" ]; then
+  kill -9 $PID
+  echo "Application stopped."
+else
+  echo "No running application found."
+fi

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd /home/ec2-user/deploy
+
+JAR_FILE=$(ls *.jar | head -n 1)
+
+echo "Starting application: $JAR_FILE"
+
+nohup java -jar "$JAR_FILE" > /home/ec2-user/log/app.log 2>&1 &

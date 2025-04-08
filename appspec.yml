@@ -1,13 +1,15 @@
 version: 0.0
 os: linux
 files:
-  - source: /target/blog-spring-api.jar
-    destination: /home/ec2-user/app
+  - source: deploy/
+    destination: /home/ec2-user/deploy
 
 hooks:
   ApplicationStop:
-    - location: /home/ec2-user/scripts/stop.sh
+    - location: scripts/stop.sh
       timeout: 60
+      runas: ec2-user
   ApplicationStart:
-    - location: /home/ec2-user/scripts/start.sh
+    - location: scripts/start.sh
       timeout: 60
+      runas: ec2-user
