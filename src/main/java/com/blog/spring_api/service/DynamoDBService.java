@@ -7,9 +7,7 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.GetItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
-import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.DeleteItemRequest;
-import software.amazon.awssdk.services.dynamodb.model.DeleteItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 import java.util.HashMap;
@@ -53,9 +51,9 @@ public class DynamoDBService {
                 .tableName(tableName)
                 .item(item)
                 .build();
-
-        PutItemResponse response = dynamoDbClient.putItem(request);
-        System.out.println("PutItem response: " + response);
+        try {
+            dynamoDbClient.putItem(request);
+        } catch (Exception ignored) {}
     }
 
     public void deleteItem(String part, String index) {
@@ -66,9 +64,9 @@ public class DynamoDBService {
                 .tableName(tableName)
                 .key(keyToDelete)
                 .build();
-
-        DeleteItemResponse response = dynamoDbClient.deleteItem(request);
-        System.out.println("DeleteItem response: " + response);
+        try {
+            dynamoDbClient.deleteItem(request);
+        } catch (Exception ignored) {}
     }
 
 
