@@ -32,6 +32,12 @@ public class DynamoDBController {
         return "Success";
     }
 
+    @DeleteMapping("/item")
+    public String deleteItem(@RequestParam String part, @RequestParam String index) {
+        dynamoDBService.deleteItem(part, index);
+        return "Success";
+    }
+
     /*----------------------------------------------------------------------------------------------------------------*/
     /*Entity----------------------------------------------------------------------------------------------------------*/
     /*----------------------------------------------------------------------------------------------------------------*/

@@ -8,6 +8,8 @@ import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.GetItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
+import software.amazon.awssdk.services.dynamodb.model.DeleteItemRequest;
+import software.amazon.awssdk.services.dynamodb.model.DeleteItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 import java.util.HashMap;
@@ -55,6 +57,20 @@ public class DynamoDBService {
         PutItemResponse response = dynamoDbClient.putItem(request);
         System.out.println("PutItem response: " + response);
     }
+
+    public void deleteItem(String part, String index) {
+        Map<String, AttributeValue> keyToDelete = new HashMap<>();
+        keyToDelete.put("part_001", AttributeValue.builder().s(part).build());
+        keyToDelete.put("index_001", AttributeValue.builder().s(index).build());
+        DeleteItemRequest request = DeleteItemRequest.builder()
+                .tableName(tableName)
+                .key(keyToDelete)
+                .build();
+
+        DeleteItemResponse response = dynamoDbClient.deleteItem(request);
+        System.out.println("DeleteItem response: " + response);
+    }
+
 
     public List<TestEntity> getAllEntities() {
         return testRepository.findAll();
