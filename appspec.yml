@@ -9,7 +9,3 @@ hooks:
     - location: scripts/preScript.sh
       timeout: 60
       runas: ec2-user
-  AfterInstall:
-    - location: scripts/postScript.sh
-      timeout: 60
-      runas: ec2-user
