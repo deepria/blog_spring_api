@@ -1,17 +1,5 @@
 #!/bin/bash
 
-yum update -y
-
-amazon-linux-extras enable corretto17
-
-yum install -y java-17-amazon-corretto
-
-yum install -y amazon-ssm-agent
-
-systemctl start amazon-ssm-agent
-
-systemctl enable amazon-ssm-agent
-
 cd /home/ec2-user/deploy
 
 JAR_FILE=$(ls *.jar | head -n 1)
