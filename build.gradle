@@ -7,6 +7,11 @@ plugins {
 group = 'com.blog'
 version = '0.0.1-SNAPSHOT'
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
 repositories {
     mavenCentral()
 }
@@ -28,4 +33,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+springBoot {
+    mainClass = 'com.blog.spring_api.SpringApiApplication'
+}
+
+bootJar {
+    archiveFileName = 'spring_api.jar'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+jar {
+    enabled = false
 }
