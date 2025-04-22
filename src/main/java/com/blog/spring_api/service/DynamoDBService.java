@@ -37,7 +37,11 @@ public class DynamoDBService {
                 .build();
 
         GetItemResponse response = dynamoDbClient.getItem(request);
-        return response.item().get("Value").s();
+        try {
+            return response.item().get("Value").s();
+        } catch (Exception e) {
+            return "Value not found";
+        }
     }
 
     public void putItem(String part, String index, String pk, String value) {
@@ -53,7 +57,8 @@ public class DynamoDBService {
                 .build();
         try {
             dynamoDbClient.putItem(request);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     public void deleteItem(String part, String index) {
@@ -66,7 +71,8 @@ public class DynamoDBService {
                 .build();
         try {
             dynamoDbClient.deleteItem(request);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
 

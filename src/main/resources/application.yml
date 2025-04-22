@@ -7,3 +7,15 @@ logging:
     root: INFO
     com.blog: DEBUG
     software.amazon.awssdk: DEBUG
+
+cloud:
+  aws:
+    region:
+      static: ap-northeast-2
+    iam:
+      accessKeyId: AKIAYSE4OJMVRXV3NUO6
+      secretAccessKey: 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
+    s3:
+      name: blog-spring-api-bucket
+      uploadPath: upload/
+
