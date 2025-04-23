@@ -9,6 +9,7 @@ import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 import software.amazon.awssdk.services.s3.presigner.model.DeleteObjectPresignRequest;
 import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
 import software.amazon.awssdk.services.s3.presigner.model.PutObjectPresignRequest;
+import software.amazon.awssdk.services.s3.model.StorageClass;
 
 import java.time.Duration;
 import java.util.List;
@@ -56,6 +57,7 @@ public class S3Service {
                 .bucket(bucket)
                 .key(path + key)
                 .contentType(contentType)
+                .storageClass(StorageClass.GLACIER_IR)
                 .build();
 
         PutObjectPresignRequest presignRequest = PutObjectPresignRequest.builder()
