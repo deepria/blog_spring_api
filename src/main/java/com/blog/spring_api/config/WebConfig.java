@@ -31,7 +31,9 @@ public class WebConfig {
                         .allowedOrigins(
                                 "https://lhmzq4cmgd.execute-api.ap-northeast-2.amazonaws.com/stage" // API Gateway 도메인
                                 , "https://main.d39hqh4ds9p1ue.amplifyapp.com" // Amplify 도메인
-                                , "https://blog-api-load-balancer-992071478.ap-northeast-2.elb.amazonaws.com/helloWorld"
+                                , "https://blog-api-load-balancer-992071478.ap-northeast-2.elb.amazonaws.com/helloWorld" // LB 테스트용 health check
+                                , "https://deepria.shop"
+                                , "https://www.deepria.shop"
                                 , "http://localhost:5173/" // 로컬 vue 도메인
                                 , "http://127.0.0.1:5173/" // 로컬 vue 도메인
                         )
